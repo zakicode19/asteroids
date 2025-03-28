@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -31,11 +32,18 @@ def main():
 			
 		updatable.update(dt)
 
+		
+
+		for asteroid  in asteroids:
+			collistion = player.check_collision(asteroid)
+			if collistion:
+				print('Game over!')
+				sys.exit()
+
 		screen.fill("black")
 
 		for draw_obj in drawable:
-			draw_obj.draw(screen)
-
+			draw_obj.draw(screen)		
 		pygame.display.flip() 
 
 		# compute FPS
